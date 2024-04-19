@@ -57,9 +57,9 @@ def both_ends(s):
 def fix_start(s):
   # +++your code here+++
   first_char = s[0]
-  for c in s:
+  for c in s[2:]:
     if c == first_char:
-      s = s.replace(c, '*')
+      s = first_char + s[1:].replace(c, '*')
   return s
 
 
