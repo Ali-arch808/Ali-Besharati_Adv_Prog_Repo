@@ -25,7 +25,7 @@
 # and donuts(23) returns 'Number of donuts: many'
 def donuts(count):
   # +++your code here+++
-  if count > 10:
+  if count >= 10:
     count = 'many'
   # print(f'Number of donuts: {count}')
   return count
