@@ -22,13 +22,8 @@ def verbing(s):
       s = s + 'ing'
     elif s[-3:] == 'ing':
       s = s + 'ly'
-      print(s)
   return s
 
-verbing('go')
-verbing('Ali')
-verbing('Fighting')
-verbing('joke')
 
 
 # E. not_bad
@@ -40,8 +35,15 @@ verbing('joke')
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-  # +++your code here+++
-  return
+# +++your code here+++
+  s = 'This dinner is not that bad!'
+  not_index = s.find('not')
+  bad_index = s.find('bad')
+  s= s.replace(s[not_index:bad_index+3], 'good')
+  print(s)
+  return s
+
+not_bad('This dinner is not that bad!')
 
 
 # F. front_back
