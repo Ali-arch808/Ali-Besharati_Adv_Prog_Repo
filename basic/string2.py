@@ -17,7 +17,18 @@
 # Return the resulting string.
 def verbing(s):
   # +++your code here+++
-  return
+  if len(s)>2:
+    if s[-3:] != 'ing':
+      s = s + 'ing'
+    elif s[-3:] == 'ing':
+      s = s + 'ly'
+      print(s)
+  return s
+
+verbing('go')
+verbing('Ali')
+verbing('Fighting')
+verbing('joke')
 
 
 # E. not_bad
@@ -78,3 +89,5 @@ def main():
 
 if __name__ == '__main__':
   main()
+
+#%%
