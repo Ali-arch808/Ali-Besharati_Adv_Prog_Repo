@@ -43,9 +43,6 @@ def not_bad(s):
   print(s)
   return s
 
-not_bad('This dinner is not that bad!')
-
-
 # F. front_back
 # Consider dividing a string into two halves.
 # If the length is even, the front and back halves are the same length.
@@ -55,7 +52,21 @@ not_bad('This dinner is not that bad!')
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
   # +++your code here+++
-  return
+  def spliter(s):
+    half_length = len(s)//2
+    if half_length % 2 ==0:
+      return s[:half_length] , s[half_length:]
+    else:
+      return s[:half_length+1], s[half_length+1:]
+
+  a_front, a_back = spliter(a)
+  b_front, b_back = spliter(b)
+  print (a_front, a_back, b_front, b_back)
+  return  a_front, b_front, a_back,  b_back
+
+# Example usage
+result = front_back("abcd", "xy")
+print(result)  # Output: 'abxcdy'
 
 
 # Simple provided test() function used in main() to print
