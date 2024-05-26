@@ -36,11 +36,10 @@ def verbing(s):
 # This dinner is good!
 def not_bad(s):
 # +++your code here+++
-  s = 'This dinner is not that bad!'
   not_index = s.find('not')
   bad_index = s.find('bad')
-  s= s.replace(s[not_index:bad_index+3], 'good')
-  print(s)
+  if not_index != -1 and bad_index != -1 and not_index < bad_index:
+    s= s.replace(s[not_index:bad_index+3], 'good')
   return s
 
 # F. front_back
@@ -53,20 +52,13 @@ def not_bad(s):
 def front_back(a, b):
   # +++your code here+++
   def spliter(s):
-    half_length = len(s)//2
-    if half_length % 2 ==0:
-      return s[:half_length] , s[half_length:]
-    else:
-      return s[:half_length+1], s[half_length+1:]
+    half_length = (len(s) + 1) // 2
+    return s[:half_length], s[half_length:]
 
   a_front, a_back = spliter(a)
   b_front, b_back = spliter(b)
-  print (a_front, a_back, b_front, b_back)
-  return  a_front, b_front, a_back,  b_back
+  return  a_front + b_front + a_back +  b_back
 
-# Example usage
-result = front_back("abcd", "xy")
-print(result)  # Output: 'abxcdy'
 
 
 # Simple provided test() function used in main() to print
@@ -102,5 +94,7 @@ def main():
 
 if __name__ == '__main__':
   main()
+
+#%%
 
 #%%
