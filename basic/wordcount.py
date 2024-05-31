@@ -63,7 +63,8 @@ def print_words(filename):
       elif word in words_dict.keys():
         words_dict[word] += 1
 
-  print(words_dict)
+  for key in words_dict.keys():
+    print(f'{key} : {words_dict[key]}')
 
 # def main():
 #   if len(sys.argv) != 3:
