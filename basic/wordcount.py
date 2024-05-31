@@ -52,6 +52,7 @@ import sys
 # calls the print_words() and print_top() functions which you must define.
 
 def print_words(filename):
+
     with open(file=filename) as file:
         text = file.read().lower()
         words_list = text.split()
@@ -65,11 +66,25 @@ def print_words(filename):
         print(f'{key} : {words_dict[key]}')
     return words_dict
 
-def print_top(words_dict):
-    sorted_dictionary = {k: v for k, v in sorted(words_dict.items(), key=lambda item: item[1])}
-    for key in words_dict.keys():
+def print_top(filename):
+
+    with open(file=filename) as file:
+        text = file.read().lower()
+    words_list = text.split()
+    words_dict = dict()
+    for word in words_list:
+        if word not in words_dict.keys():
+            words_dict[word] = 1
+        elif word in words_dict.keys():
+            words_dict[word] += 1
+
+    sorted_list = sorted(words_dict.items(), key=lambda item: item[1], reverse=True)
+
+    # Step 2: Extract the keys of the top 20 items
+    top_20_words = [item[0] for item in sorted_list[:20]]
+
+    for key in top_20_words:
         print(f'{key} : {words_dict[key]}')
-    return words_dict
 
 
 def main():
@@ -82,10 +97,12 @@ def main():
     if option == '--count':
         print_words(filename)
     elif option == '--topcount':
-        print_top(print_words(filename))
+        print_top(filename)
     else:
         print('unknown option: ' + option)
     sys.exit(1)
 
 if __name__ == '__main__':
     main()
+
+#%%
