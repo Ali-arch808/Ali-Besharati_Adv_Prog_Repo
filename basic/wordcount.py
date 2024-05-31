@@ -1,5 +1,4 @@
-
-#!/usr/bin/python3
+# !/usr/bin/python3
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -40,6 +39,7 @@ print_words() and print_top().
 
 import sys
 
+
 # +++your code here+++
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
@@ -52,34 +52,41 @@ import sys
 # calls the print_words() and print_top() functions which you must define.
 
 def print_words(filename):
+    with open(file=filename) as file:
+        text = file.read().lower()
+        words_list = text.split()
+        words_dict = dict()
+        for word in words_list:
+            if word not in words_dict.keys():
+                words_dict[word] = 1
+            elif word in words_dict.keys():
+                words_dict[word] += 1
+    for key in words_dict.keys():
+        print(f'{key} : {words_dict[key]}')
+    return words_dict
 
-  with open(file=filename) as file:
-    text = file.read().lower()
-    words_list = text.split()
-    words_dict = dict()
-    for word in words_list:
-      if word not in words_dict.keys():
-        words_dict[word] = 1
-      elif word in words_dict.keys():
-        words_dict[word] += 1
+def print_top(words_dict):
+    sorted_dictionary = {k: v for k, v in sorted(words_dict.items(), key=lambda item: item[1])}
+    for key in words_dict.keys():
+        print(f'{key} : {words_dict[key]}')
+    return words_dict
 
-  for key in words_dict.keys():
-    print(f'{key} : {words_dict[key]}')
 
-# def main():
-#   if len(sys.argv) != 3:
-#     print('usage: ./wordcount.py {--count | --topcount} file')
-#     sys.exit(1)
-#
-#   option = sys.argv[1]
-#   filename = sys.argv[2]
-#   if option == '--count':
-#     print_words(filename)
-#   elif option == '--topcount':
-#     print_top(filename)
-#   else:
-#     print('unknown option: ' + option)
-#     sys.exit(1)
-#
-# if __name__ == '__main__':
-#   main()
+def main():
+    if len(sys.argv) != 3:
+        print('usage: ./wordcount.py {--count | --topcount} file')
+        sys.exit(1)
+
+    option = sys.argv[1]
+    filename = sys.argv[2]
+    if option == '--count':
+        print_words(filename)
+    elif option == '--topcount':
+        print_top(filename)
+    else:
+        print('unknown option: ' + option)
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()
