@@ -1,3 +1,4 @@
+
 #!/usr/bin/python3
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
@@ -49,20 +50,35 @@ import sys
 
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
-def main():
-  if len(sys.argv) != 3:
-    print('usage: ./wordcount.py {--count | --topcount} file')
-    sys.exit(1)
 
-  option = sys.argv[1]
-  filename = sys.argv[2]
-  if option == '--count':
-    print_words(filename)
-  elif option == '--topcount':
-    print_top(filename)
-  else:
-    print('unknown option: ' + option)
-    sys.exit(1)
+def print_words(filename):
 
-if __name__ == '__main__':
-  main()
+  with open(file=filename) as file:
+    text = file.read().lower()
+    words_list = text.split()
+    words_dict = dict()
+    for word in words_list:
+      if word not in words_dict.keys():
+        words_dict[word] = 1
+      elif word in words_dict.keys():
+        words_dict[word] += 1
+
+  print(words_dict)
+
+# def main():
+#   if len(sys.argv) != 3:
+#     print('usage: ./wordcount.py {--count | --topcount} file')
+#     sys.exit(1)
+#
+#   option = sys.argv[1]
+#   filename = sys.argv[2]
+#   if option == '--count':
+#     print_words(filename)
+#   elif option == '--topcount':
+#     print_top(filename)
+#   else:
+#     print('unknown option: ' + option)
+#     sys.exit(1)
+#
+# if __name__ == '__main__':
+#   main()
