@@ -82,11 +82,10 @@ def main():
     if option == '--count':
         print_words(filename)
     elif option == '--topcount':
-        print_top(filename)
+        print_top(print_words(filename))
     else:
         print('unknown option: ' + option)
-        sys.exit(1)
-
+    sys.exit(1)
 
 if __name__ == '__main__':
     main()
