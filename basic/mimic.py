@@ -16,7 +16,7 @@ it into one giant string and split it once.
 
 Build a "mimic" dict that maps each word that appears in the file
 to a list of all the words that immediately follow that word in the file.
-The list of words can be be in any order and should include
+The list of words can be in any order and should include
 duplicates. So for example the key "and" might have the list
 ["then", "best", "then", "after", ...] listing
 all the words which came after "and" in the text.
@@ -48,8 +48,17 @@ import sys
 def mimic_dict(filename):
   """Returns mimic dict mapping each word to list of words which follow it."""
   # +++your code here+++
-  return
+  with open(filename) as file:
+    text = file.read()
+  words = text.split()
+  m_dict = dict()
+  for word in words:
+    m_dict[word] = words[words.index(word)+1:]
 
+  print(m_dict, end = ' ')
+  return m_dict
+
+mimic_dict('small.txt')
 
 def print_mimic(mimic_dict, word):
   """Given mimic dict and start word, prints 200 random words."""
