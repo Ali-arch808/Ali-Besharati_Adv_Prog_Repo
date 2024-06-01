@@ -24,7 +24,7 @@ def match_ends(words):
     # +++your code here+++
     n_matched_ends = 0
     for word in words:
-        if len(word) > 2 and word[0] == word[-1]:
+        if len(word) >= 2 and word[0] == word[-1]:
             n_matched_ends += 1
 
     return n_matched_ends
