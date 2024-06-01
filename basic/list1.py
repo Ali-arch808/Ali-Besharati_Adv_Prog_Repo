@@ -44,7 +44,8 @@ def begin_x_key(word):
 
 def front_x(words):
     # +++your code here+++
-    return sorted(words, key=begin_x_key, reverse=True)
+    sorted_words = sorted(words)
+    return sorted(sorted_words, key=begin_x_key, reverse=True)
 
 
 # C. sort_last
