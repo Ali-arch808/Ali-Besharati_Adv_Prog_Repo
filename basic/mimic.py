@@ -57,7 +57,7 @@ def mimic_dict(filename):
     try:
       m_dict[word].add(words[idx+1])
     except:
-      pass
+      m_dict[words[-1]] = ''
 
   return m_dict
 
