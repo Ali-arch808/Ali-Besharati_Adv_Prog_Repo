@@ -62,21 +62,26 @@ def mimic_dict(filename):
   return m_dict
 
 
-m_dict = mimic_dict('small.txt')
+# m_dict = mimic_dict('small.txt')
 
 
 import random
 def print_mimic(mimic_dict, word):
   """Given mimic dict and start word, prints 200 random words."""
   # +++your code here+++
-  for i in range(200):
-    print(word , end = ' ')
-    word = random.choice(list(mimic_dict[word]))
-
-print_mimic(mimic_dict('small.txt') , 'we')
+  print(word , end = ' ')
+  i = 0
+  while i < 200:
+    try:
+      word = random.choice(list(mimic_dict[word]))
+      print(word , end = ' ')
+      i += 1
+    except:
+      pass
 
 # Provided main(), calls mimic_dict() and mimic()
 def main():
+  print('Starting the main func!')
   if len(sys.argv) != 2:
     print('usage: ./mimic.py file-to-read')
     sys.exit(1)
