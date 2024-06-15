@@ -71,7 +71,7 @@ def print_mimic(mimic_dict, word):
   # +++your code here+++
   for i in range(200):
     print(word , end = ' ')
-    word = random.choice(mimic_dict[word])
+    word = random.choice(list(mimic_dict[word]))
 
 print_mimic(mimic_dict('small.txt') , 'we')
 
