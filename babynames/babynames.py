@@ -34,13 +34,28 @@ Suggested milestones for incremental development:
  -Fix main() to use the extract_names list
 """
 
+file_name = 'baby1990.html'
+with open(file_name) as file:
+  html_content = file.read()
+  # Regular expression pattern to match names
+  pattern = r'<td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>'
+
+  # Find all matches
+  matches = re.findall(pattern, html_content)
+  # Extract the names
+  babys_list = [file_name[-9:-5]]  ## The year
+  for match in matches:
+    babys_list.append(str(match[1] + ' ' + match[0]))
+    babys_list.append(str(match[2] + ' ' + match[0]))
+  babys_list = sorted(babys_list)
+
 def extract_names(filename):
   """
   Given a file name for baby.html, returns a list starting with the year string
   followed by the name-rank strings in alphabetical order.
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
-  # +++your code here+++
+
   return
 
 

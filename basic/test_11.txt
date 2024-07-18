@@ -1,0 +1,49 @@
+That's better, but the line is still a little long. Python lets you cut a line up into chunks, which it will then automatically concatenate. So, to make this line even shorter, we can do this:
+
+
+  # Split the line into chunks, which are concatenated automatically by Python
+  text = (
+    "%d little pigs come out, "
+    "or I'll %s, and I'll %s, "
+    "and I'll blow your %s down."
+    % (3, 'huff', 'puff', 'house'))
+Strings (Unicode vs bytes)
+Regular Python strings are unicode.
+
+Python also supports strings composed of plain bytes (denoted by the prefix 'b' in front of a string literal) like:
+
+
+> byte_string = b'A byte string'
+> byte_string
+  b'A byte string'
+A unicode string is a different type of object from a byte string but various libraries such as regular expressions work correctly if passed either type of string.
+
+To convert a regular Python string to bytes, call the encode() method on the string. Going the other direction, the byte string decode() method converts encoded plain bytes to a unicode string:
+
+
+> ustring = 'A unicode \u018e string \xf1'
+> b = ustring.encode('utf-8')
+> b
+b'A unicode \xc6\x8e string \xc3\xb1'  ## bytes of utf-8 encoding. Note the b-prefix.
+> t = b.decode('utf-8')                ## Convert bytes back to a unicode string
+> t == ustring                         ## It's the same as the original, yay!
+True
+
+
+In the file-reading section, there's an example that shows how to open a text file with some encoding and read out unicode strings.
+
+If Statement
+Python does not use { } to enclose blocks of code for if/loops/function etc.. Instead, Python uses the colon (:) and indentation/whitespace to group statements. The boolean test for an if does not need to be in parenthesis (big difference from C++/Java), and it can have *elif* and *else* clauses (mnemonic: the word "elif" is the same length as the word "else").
+
+Any value can be used as an if-test. The "zero" values all count as false: None, 0, empty string, empty list, empty dictionary. There is also a Boolean type with two values: True and False (converted to an int, these are 1 and 0). Python has the usual comparison operations: ==, !=, <, <=, >, >=. Unlike Java and C, == is overloaded to work correctly with strings. The boolean operators are the spelled out words *and*, *or*, *not* (Python does not use the C-style && || !). Here's what the code might look like for a health app providing drink recommendations throughout the day -- notice how each block of then/else statements starts with a : and the statements are grouped by their indentation:
+
+
+  if time_hour >= 0 and time_hour <= 24:
+    print('Suggesting a drink option...')
+    if mood == 'sleepy' and time_hour < 10:
+      print('coffee')
+    elif mood == 'thirsty' or time_hour < 2:
+      print('lemonade')
+    else:
+      print('water')
+I find that omitting the ":" is my most common syntax mistake when typing in the above sort of code, probably since that's an additional thing to type vs. my C++/Java habits. Also, don't put the boolean test in parentheses -- that's a C/Java habit. If the code is short, you can put the code on the same line after ":", like this (this applies to functions, loops, etc. also), although some people feel it's more readable to space things out on separate lines.
